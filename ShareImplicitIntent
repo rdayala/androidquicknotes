@@ -1,0 +1,56 @@
+
+One of the most used implicit intents in Android is the share intent.
+
+You can leverage your favorites apps to share photos, texts, videos and general links. Good thing is, you don't have to know what the user's favorite apps are.
+
+Just tell Android what data you want to share and it shows your users a list of apps that will share it, apps that may not have existed when your app was written.
+
+To make it even easier to share, Android 4.0 added the ShareActionProvider and we have it for previous releases of Android as part of a support library.
+
+It operates using the ACTION_SEND intent.
+The data to send would be included with it as extras, either as text or URI to the binary data.
+The MIME would indicate what the URI points to.
+
+in the menu xml file, add an item like this:
+
+    <item android:id="@+id/action_share"
+        android:title="@string/action_share"
+        app:showAsAction="always"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"></item>
+
+in your fragment/activity class:
+
+make sure you import "android.support.v7.widget.ShareActionProvider" and not "android.widget.ShareActionProvider".
+
+FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET - It prevents the activity we're sharing to, from being placed on to the activity stack. what will happen, if we don't have this flag set is, when you click on the icon to return to the application later, you may actually end up in another applicaiton, the one that's actually handling the share intent.
+
+private Intent createShareForecastIntent() {
+    Intent shareIntent = new Intent(Intent.ACTION_SEND); // ACTION_SEND for share content
+    shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET); 
+    shareIntent.setType("text/plain");
+    shareIntent.putExtra(Intent.EXTRA_TEXT, mForecastStr + FORECAST_SHARE_TAG);
+    return shareIntent;
+}
+
+@Override
+public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+// Inflate the menu; this adds items to the action bar if it is present
+inflater.inflate(R.menu.detailfragment, menu);
+
+// Retrieve the share menu item
+MenuItem menuItem = menu.findItem(R.id.action_share);
+
+// Get the provider and hold onto it to set/change the share intent.
+ShareActionProvider mShareActionProvider = (ShareActionProvider)MenuItemCompat.getActionProvider(menuItem);
+
+// Attach an intent to this ShareActionProvider.  You can update this at any time,
+// like when the user selects a new piece of data they might like to share.
+if(mShareActionProvider != null) {
+      mShareActionProvider.setShareIntent(createShareForecastIntent());
+} else {
+    Log.d(LOG_TAG, "Share action provider is null");
+}
+
+
+
