@@ -38,8 +38,9 @@ Create xml folder, create pref_general.xml file with PreferenceScreen.
         android:title="@string/pref_units_label"
         android:key="@string/pref_units_key"
         android:defaultValue="@string/pref_units_metric"
-        android:entryValues="@array/pref_units_values"
-        android:entries="@array/pref_units_options" />
+        android:entryValues="@array/pref_units_values" -- these values are used within the app logic
+        android:entries="@array/pref_units_options"  -- these are user visible options
+    />
 
 </PreferenceScreen>
 
@@ -113,6 +114,11 @@ Step 3:
 How to retrieve the Preference value/ How to make use of it???
 
 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String location = prefs.getString(getString(R.string.pref_location_key), 
-                                        getString(R.string.pref_location_default));
+String location = prefs.getString(getString(R.string.pref_location_key), 
+                                    getString(R.string.pref_location_default));
+                                    
+String unitType = prefs.getString(getString(R.string.pref_units_key),
+                                    getString(R.string.pref_units_metric));
+                                    
+
 
