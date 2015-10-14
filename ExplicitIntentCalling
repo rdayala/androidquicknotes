@@ -1,4 +1,5 @@
 
+An Explicit Intent explicitly specifies the name of the recipient.
 
 Intent detailIntent = new Intent(getActivity().getApplicationContext(), DetailActivity.class);
 detailIntent.putExtra(Intent.EXTRA_TEXT, forecast); // Information you want to pass
