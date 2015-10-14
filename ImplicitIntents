@@ -1,3 +1,19 @@
 
 
 Check this link : http://developer.android.com/guide/components/intents-common.html
+
+SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+String location = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+
+Uri geoLocation = Uri.parse("geo:0, 0?").buildUpon()
+          .appendQueryParameter("q", location)
+          .build();
+
+Intent intent = new Intent(Intent.ACTION_VIEW); // this is used to view Map
+intent.setData(geoLocation);
+
+if(intent.resolveActivity(getPackageManager()) != null) {
+    startActivity(intent);
+}
+else
+    Log.d("MainActivity", "No map app available on device");
