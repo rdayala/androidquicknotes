@@ -1,0 +1,42 @@
+
+    TextView tvOut;
+    Button btnOk;
+    Button btnCancel;
+    
+    // find View-elements
+    tvOut = (TextView) findViewById(R.id.tvOut);
+    btnOk = (Button) findViewById(R.id.btnOk);
+    btnCancel = (Button) findViewById(R.id.btnCancel);
+
+    // create click listener
+    View.OnClickListener oclBtnOk = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // change text of the TextView (tvOut)
+            tvOut.setText("Button OK clicked!");
+        }
+    };
+
+    // assign click listener to the OK button (btnOK)
+    btnOk.setOnClickListener(oclBtnOk);
+
+    // asign click listener to the Cancel button (btnCancel)
+    btnCancel.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            tvOut.setText("Button Cancel clicked!");
+        }
+    });    
+    
+// Another way :
+
+<Button
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:text="Click Me"
+     android:onClick="showMessage" />
+     
+// button listener
+public void showMessage(View view) {
+    // button click app logic
+}
