@@ -1,0 +1,18 @@
+// LENGTH_LONG Show the view or text notification for a long period of time - 3500 ms predefined
+// LENGTH_SHORT Show the view or text notification for a short period of time - 2000 ms predefined
+
+Context context = getApplicationContext();
+CharSequence text = "Hello toast!";
+int duration = Toast.LENGTH_SHORT;
+
+Toast toast = Toast.makeText(context, text, duration);
+toast.show();
+
+
+// Display toast message in your MainActivity
+Toast toast = Toast.makeText(this, "toast message", Toast.LENGTH_LONG);
+toast.show();
+
+// From within fragment file
+Toast toast = Toast.makeText(getActivity(), "Item is clicked", Toast.LENGTH_SHORT);
+toast.show();
