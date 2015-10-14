@@ -1,0 +1,14 @@
+
+The Up button is used to navigate within an app based on the hierarchical relationships between screens. 
+For instance, if screen A displays a list of items, and selecting an item leads to screen B (which presents that item in more detail), then screen B should offer an Up button that returns to screen A.
+
+If a screen is the topmost one in an app (that is, the app's home), it should not present an Up button.
+
+The system Back button is used to navigate, in reverse chronological order, through the history of screens the user has recently worked with. It is generally based on the temporal relationships between screens, rather than the app's hierarchy.
+
+When the previously viewed screen is also the hierarchical parent of the current screen, pressing the Back button has the same result as pressing an Up button — this is a common occurrence.  *** [Need clarification here]
+
+However, unlike the Up button, which ensures the user remains within your app, the Back button can return the user to the Home screen, or even to a different app.
+
+UP will always navigate you within the same app to the parent regardless of how you arrived at this screen.
+
