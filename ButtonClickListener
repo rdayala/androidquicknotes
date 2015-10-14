@@ -48,7 +48,19 @@
         public void onClick(View v) {
             tvOut.setText("Button Cancel clicked!");
         }
-    });    
+    });
+    
+    
+// Alternative Way
+
+1. Make your activity class implements View.OnClickListener
+2. btnCancel.setOnClickListener(this)
+3. write this method:
+
+@Override
+public void onClick(View v) {
+   tvOut.setText("Button Cancel clicked Here!");
+}
     
 // Another way :
 
