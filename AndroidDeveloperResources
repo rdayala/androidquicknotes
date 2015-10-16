@@ -1,0 +1,42 @@
+
+Suggested Resources from:
+
+General
+
+Do you have any favorite books about Android/Java that you can recommend?﻿
+
+Having a strong Java background is important. Java doesn’t change as often as Android and understanding good Java architecture will translate to Android.
+
+    Effective Java by Joshua Bloch 
+
+    Presents good design patterns and anti-patterns (how things used to be done and should be avoided)
+
+    Java Concurrency in Practice by Brian Goetz  et al
+
+    Better grasp of Java threading and concurrency patterns helps a lot with Android development. 
+
+Development Process
+
+How to does the performance testing of Android App and simulate the scenario?﻿
+
+    Parse through heap dumps using heap analysis tools. Figure out strong references that are eating up memory and find Garbage Collection Roots (GCRoots).
+    Udacity’s Android Performance course guides you through concrete examples of how to use all the performance tools offered in the Android platform. 
+
+Do you use smartphone or virtual machine to test Mobile applications ? Do you use continuous integration?﻿ Suggestions for other testing tools?
+
+    For Continuous Integration (CI)*, we use CircleCI monitors branches and build branches and automatically run tests. For Android, it can also auto-run virtual devices on any commit changes. Can also be run across multiple machines. (JenkinsCI is popular but is more local). 
+
+*Continuous Integration is a development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early. (ThoughtWorks)
+
+    Genymotion
+
+An amazing virtual device! Paid version has lots of great features such as simulating flaky networks
+
+    Fabric
+
+Has several services. One is called Crashlytics which provides automatic crash reporting.
+
+Suggested frameworks for Unit Testing?
+
+    Mockito -  Mocking framework for Unit Testing
+    Dagger 2  - Good for dependency injection. In their own words, “ Dagger 2 is the first to implement the full stack with generated code. The guiding principle is to generate code that mimics the code that a user might have hand-written to ensure that dependency injection is a simple, traceable and performant as it can be. For more background on the design, watch this talk (slides)”
