@@ -1,0 +1,21 @@
+
+Defining array values in a file :
+
+res/values/arrays.xml
+
+<resources>
+    <string-array name="courseDescriptions">
+        <item>Android 4.0 includes a number of new developer features. </item>
+        <item>This course covers beginning level Android development.</item>
+        <item>Virtually all interactivity between Android components occurs.</item>
+        <item>The ActionBar incorporates a variety of previously disparate.</item>
+        <item>In this course you will learn how to use Android services.</item>
+    </string-array>
+</resources>
+
+
+
+Using array values:
+
+String[] _courseDescriptions;
+_courseDescriptions = getResources().getStringArray(R.array.courseDescriptions);
