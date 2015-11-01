@@ -50,3 +50,58 @@ public class GridViewAdapter extends ArrayAdapter<MovieDataItem> {
 }
 
 
+// Setting up GridView adapter
+
+@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        //Initialize with empty data
+        mGridData = new ArrayList<>();
+
+        // The Adapter will take data from a source and
+        // use it to populate the GridView it's attached to.
+        mGridAdapter = new GridViewAdapter(
+                            getActivity(), // The current context (this activity)
+                            R.layout.movie_poster_grid_item, // The name of the layout ID. This is the layout that actually defines grid view items.
+                            mGridData); // The data to represent in the GridView
+
+        View rootView = inflater.inflate(R.layout.movie_posters_fragment, container, false);
+
+        // Get a reference to the GridView, and attach this adapter to it.
+        mGridView = (GridView)rootView.findViewById(R.id.movie_posters_grid);
+        mGridView.setAdapter(mGridAdapter);
+
+        // On Click event for Gridview Item
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Fragment movieDetailsFragment = getActivity().getSupportFragmentManager()
+                        .findFragmentById(R.id.movieDetailsFragment);
+
+                // passing array index
+                MovieDataItem item = mGridData.get(position);
+
+                if (movieDetailsFragment != null && movieDetailsFragment.isVisible()) {
+                    ((MoviesFragmentCoordinator)getActivity()).onMoviePosterSelected(item);
+                }
+                else {
+                    Intent movieDetailIntent = new Intent(getActivity(), MovieDetailsActivity.class);
+                    movieDetailIntent.putExtra(getString(R.string.movie_id), item.getMovieId());
+                    movieDetailIntent.putExtra(getString(R.string.movie_poster_url), item.getMoviePosterPathUrl());
+                    movieDetailIntent.putExtra(getString(R.string.movie_original_title), item.getOriginalTitle());
+                    movieDetailIntent.putExtra(getString(R.string.movie_overview), item.getOverview());
+                    movieDetailIntent.putExtra(getString(R.string.movie_vote_average), item.getVote_average());
+                    movieDetailIntent.putExtra(getString(R.string.movie_release_date), item.getReleaseDate());
+                    startActivity(movieDetailIntent);
+                }
+            }
+        });
+
+        if(savedInstanceState != null) {
+            moviesJsonData = savedInstanceState.getString(getString(R.string.movie_saved_json_data));
+        }
+
+        return rootView;
+    }
