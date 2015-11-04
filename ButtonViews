@@ -1,0 +1,66 @@
+
+
+    // this method is called when portfolio buttons are tapped.
+    // this method is attached as a callback function to
+    // android:onClick attribute of the Button element.
+    // view - refers to the button on which user tapped
+
+    public void sendMessage(View view) {
+        Context context = getApplicationContext();
+        Button btn = (Button)view;
+        int duration = Toast.LENGTH_SHORT;
+        CharSequence appTitle = null;
+
+        // get the button id
+        int btnId = btn.getId();
+
+        switch(btnId) {
+            case R.id.media_streamer:
+                appTitle = "\'Spotify streamer\'";
+                break;
+            case R.id.super_duo1:
+                appTitle = "\'Scores\'";
+                break;
+            case R.id.super_duo2:
+                appTitle = "\'Library\'";
+                break;
+            case R.id.ant_terminator:
+                appTitle = "\'Build it bigger\'";
+                break;
+            case R.id.materialize:
+                appTitle = "\'Bacon reader\'";
+                break;
+            case R.id.capstone:
+                appTitle = "\'Capstone\'";
+                break;
+        }
+
+        Toast toast = Toast.makeText(context, "This button will launch " + appTitle + " app!", duration);
+        toast.show();
+    }
+
+button views:
+
+        <Button
+            android:id="@+id/super_duo1"
+            android:layout_below="@id/media_streamer"
+            style="@style/PortfolioButton"
+            android:text="@string/super_duo1" />
+
+        <Button
+            android:id="@+id/super_duo2"
+            android:layout_below="@id/super_duo1"
+            style="@style/PortfolioButton"
+            android:text="@string/super_duo2" />
+
+buttons have this style:
+
+ <style name="PortfolioButton">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#F08C35</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:onClick">sendMessage</item>
+
+    </style>
