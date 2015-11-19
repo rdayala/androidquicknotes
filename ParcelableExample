@@ -1,0 +1,159 @@
+https://guides.codepath.com/android/using-parcelable
+
+POJO class implementing Parcelable
+------------------------------------
+
+package com.example.android.popularmovies;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+/**
+ * Created by rdayala on 10/8/2015.
+ * This class contains the Movie Data
+ */
+public class MovieDataItem implements Parcelable{
+    private static final String MOVIE_POSTER_URL = "http://image.tmdb.org/t/p/w185/";
+
+    private String movieId;         // id
+    private String moviePosterPath; // poster_path
+    private String originalTitle;   // original_title
+    private String overview;        // overview
+    private String vote_average;    // vote_average
+    private String releaseDate;     // release_date
+    private String origLanguage;    // original_language
+
+    public MovieDataItem() {
+
+    }
+
+    public MovieDataItem(Parcel in) {
+        readFromParcel(in);
+    }
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getMoviePosterPath() {
+        return moviePosterPath;
+    }
+
+    public void setMoviePosterPath(String moviePosterPath) {
+        this.moviePosterPath = moviePosterPath;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getVote_average() {
+        return vote_average;
+    }
+
+    public void setVote_average(String vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getOrigLanguage() {
+        return origLanguage;
+    }
+
+    public void setOrigLanguage(String origLanguage) {
+        this.origLanguage = origLanguage;
+    }
+
+    public String getMoviePosterPathUrl() {
+        return MOVIE_POSTER_URL + getMoviePosterPath();
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+
+        // We just need to write each field into the parcel. When we read from parcel, they
+        // will come back in the same order
+        out.writeString(movieId);
+        out.writeString(moviePosterPath);
+        out.writeString(originalTitle);
+        out.writeString(overview);
+        out.writeString(vote_average);
+        out.writeString(releaseDate);
+        out.writeString(origLanguage);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    private void readFromParcel(Parcel in) {
+
+        // We just need to read back each field in the order that it was
+        // written to the parcel
+        movieId = in.readString();
+        moviePosterPath = in.readString();
+        originalTitle = in.readString();
+        overview = in.readString();
+        vote_average = in.readString();
+        releaseDate = in.readString();
+        origLanguage = in.readString();
+    }
+
+    // After implementing the `Parcelable` interface, we need to create the
+    // `Parcelable.Creator<MovieDataItem> CREATOR` constant for our class;
+    // Notice how it has our class specified as its type.
+    public static final Parcelable.Creator<MovieDataItem> CREATOR
+            = new Parcelable.Creator<MovieDataItem>() {
+
+        // This simply calls our new constructor (typically private) and
+        // passes along the unmarshalled `Parcel`, and then returns the new object!
+        @Override
+        public MovieDataItem createFromParcel(Parcel in) {
+            return new MovieDataItem(in);
+        }
+
+        // We just need to copy this and change the type to match our class.
+        @Override
+        public MovieDataItem[] newArray(int size) {
+            return new MovieDataItem[size];
+        }
+    };
+
+}
+
+Marshalling Data to send to another activity
+-----------------------------------------------
+
+Intent movieDetailIntent = new Intent(getActivity(), MovieDetailsActivity.class);
+movieDetailIntent.putExtra("movieDataItem", item);
+startActivity(movieDetailIntent);
+
+Un-marshalling data
+---------------------
+
+Intent detailIntent = getIntent();
+MovieDataItem movieDataItem = detailIntent.getParcelableExtra("movieDataItem");
