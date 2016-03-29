@@ -2,6 +2,8 @@ This repository holds all the quick codes and notes for reference.
 
 http://www.androidguide.in/index.html
 
+http://codebeautify.org/xmlviewer
+
 Useful Tools (http://www.androidguide.in/tools.html)
 
 Telecine to capture full resolution videos directly on your phone.
