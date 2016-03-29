@@ -1,1 +1,15 @@
 This repository holds all the quick codes and notes for reference.
+
+http://www.androidguide.in/index.html
+
+Useful Tools (http://www.androidguide.in/tools.html)
+
+Telecine to capture full resolution videos directly on your phone.
+Clean Status bar for a clean status bar when taking screenshots for playstore.
+Material Design Clour palette
+Android Tool one-click screenshots,video recordings, APK installations for Android phones and smartwatches connected to your Mac.
+Genymotion faster emulator.
+Gradle please
+JSON Validator
+TinyPNG for image compression.
+Device art generator The device art generator enables you to quickly wrap app screenshots in device artwork. This provides better visual context for your app screenshots on your website or in other promotional materials.
